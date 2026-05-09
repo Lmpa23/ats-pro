@@ -236,7 +236,7 @@ const guardar = async () => {
     ]
   }));
 setForm(null)};
-};  if(form) return (
+ if(form) return (
     <div className="max-w-2xl mx-auto">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-bold text-gray-800">Nueva Requisición</h2>
