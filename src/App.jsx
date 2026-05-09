@@ -206,8 +206,38 @@ function ModuloRequisiciones({ state, setState }) {
     if(!form.fechaLimite) e.fechaLimite="Requerido";
     setErrores(e); return Object.keys(e).length===0;
   };
-  const guardar=()=>{ if(!validar()) return; setState(s=>({...s,requisiciones:[{...form,id:Date.now()},...s.requisiciones]})); setForm(null); };
-  if(form) return (
+const guardar = async () => {
+  if (!validar()) return;
+
+  const nuevaReq = {
+    ...form,
+    creadoen: new Date().toLocaleDateString()
+  };
+
+  const { data, error } = await supabase
+    .from("requisiciones")
+    .insert([nuevaReq])
+    .select();
+
+  if (error) {
+    console.log(error);
+    alert("Error guardando requisición");
+    return;
+  }
+
+  setState(s => ({
+    ...s,
+    requisiciones: [
+      {
+        ...nuevaReq,
+        id: data[0].id
+      },
+      ...s.requisiciones
+    ]
+  }));
+
+  setForm(null);
+};  if(form) return (
     <div className="max-w-2xl mx-auto">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-bold text-gray-800">Nueva Requisición</h2>
