@@ -1,3 +1,4 @@
+import { supabase } from "./lib/supabase";
 import { useState, useEffect, createContext, useContext, useCallback } from "react";
 import { Users, ClipboardList, CheckSquare, Briefcase, BarChart2, Menu, X, ChevronRight } from "lucide-react";
 
@@ -789,7 +790,19 @@ export default function App() {
 }
 
 function AppInner() {
-  const [state, setState]         = useState(() => loadState());
+  useEffect(() => {
+  async function testConnection() {
+    const { data, error } = await supabase
+      .from("usuarios")
+      .select("*");
+
+    console.log("SUPABASE DATA:", data);
+    console.log("SUPABASE ERROR:", error);
+  }
+
+  testConnection();
+}, []);
+    const [state, setState]         = useState(() => loadState());
   const [rol, setRol]             = useState("hiring_manager");
   const [vista, setVista]         = useState("welcome");
   const [sidebarOpen, setSidebar] = useState(true);
