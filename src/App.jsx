@@ -224,6 +224,7 @@ const guardar = async () => {
     alert("Error guardando requisición");
     return;
   }
+
   setState(s => ({
     ...s,
     requisiciones: [
@@ -234,6 +235,7 @@ const guardar = async () => {
       ...s.requisiciones
     ]
   }));
+  
   setForm(null);
 };
  if(form) return (
