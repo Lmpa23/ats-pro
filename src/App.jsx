@@ -214,11 +214,13 @@ const guardar = async () => {
     ...form,
     creadoen: new Date().toLocaleDateString()
   };
-
+console.log("GUARDANDO...", nuevaReq);
   const { data, error } = await supabase
     .from("requisiciones")
     .insert([nuevaReq])
     .select();
+    console.log("INSERT DATA:", data);
+console.log("INSERT ERROR:", error);
 
   if (error) {
     console.log(error);
