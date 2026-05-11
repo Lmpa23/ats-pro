@@ -219,7 +219,8 @@ console.log("GUARDANDO...", nuevaReq);
     .from("requisiciones")
     .insert([nuevaReq])
     .select();
-    console.log("INSERT DATA:", data);
+   
+console.log("INSERT DATA:", data);
 console.log("INSERT ERROR:", error);
 
   if (error) {
