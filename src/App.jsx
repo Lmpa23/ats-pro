@@ -1,3 +1,4 @@
+// prueba
 import { supabase } from "./supabase";
 import { supabase } from "./lib/supabase";
 import { useState, useEffect, createContext, useContext, useCallback } from "react";
